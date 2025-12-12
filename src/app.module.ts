@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Usuario } from './usuario/entities/usuario.entity';
 import { UsuarioModule } from './usuario/usuario.module';
 import { ConfigModule } from '@nestjs/config';
+import { ClienteModule } from './cliente/cliente.module';
+import { Cliente } from './cliente/entities/cliente.entity';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -15,11 +17,12 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [Usuario],
+      entities: [Usuario, Cliente],
       synchronize: true,
       logging: true, 
     }),
     UsuarioModule,
+    ClienteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
