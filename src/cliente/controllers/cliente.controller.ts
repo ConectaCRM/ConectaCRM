@@ -12,8 +12,11 @@ import {
 } from '@nestjs/common';
 import { Cliente } from '../entities/cliente.entity';
 import { ClienteService } from '../services/cliente.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Postagem')
 @Controller('/clientes')
+@ApiBearerAuth()
 export class ClienteController {
   constructor(private readonly clienteService: ClienteService) {}
 

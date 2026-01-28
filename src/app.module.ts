@@ -9,22 +9,18 @@ import { ClienteModule } from './cliente/cliente.module';
 import { Cliente } from './cliente/entities/cliente.entity';
 import { Categoria } from './categoria/entities/categoria.entity';
 import { CategoriaModule } from './categoria/categoria.modules';
+import { ProdService } from './data/services/prod.service'; //Para usar o banco em deploy(server)
+import { DevService } from './data/services/dev.service'; //Para usar banco local
+
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: Number (process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
-      entities: [Usuario, Cliente, Categoria,],
-      synchronize: true,
-      logging: true, 
-    }),
+    TypeOrmModule.forRootAsync({
+      useClass: ProdService,
+      imports: [ConfigModule],
+}),
     UsuarioModule,
     ClienteModule,
     CategoriaModule,
