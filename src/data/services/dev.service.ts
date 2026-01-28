@@ -14,7 +14,7 @@ export class DevService implements TypeOrmOptionsFactory {
             // port: 3306,
             // username: 'root',
             // password: 'root',
-            // database: 'db_conectcrm',
+            // database: 'db_conectacrm',
             // entities: [Cliente, Categoria, Usuario],
             // synchronize: true,
             type: 'mysql',
