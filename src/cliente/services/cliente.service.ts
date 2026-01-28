@@ -11,7 +11,12 @@ export class ClienteService {
   ) {}
 
   async findAll(): Promise<Cliente[]> {
-    return await this.clienteRepository.find();
+    return await this.clienteRepository.find({
+      relations:{
+        usuario: true,
+        categoria: true
+      }
+    });
   }
 
   async findById(id: number): Promise<Cliente> {
@@ -19,6 +24,10 @@ export class ClienteService {
       where: {
         id,
       },
+      relations: {
+        usuario: true,
+        categoria: true
+      }
     });
 
     if (!cliente)

@@ -1,5 +1,7 @@
 import { IsNotEmpty, MinLength } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Cliente } from "../../cliente/entities/cliente.entity";
+import { OneToMany } from "typeorm";
 
 @Entity({name: "tb_usuarios"})
 export class Usuario {
@@ -23,6 +25,9 @@ export class Usuario {
     @IsNotEmpty()
     @Column ({ length: 1000, nullable: false})
     foto: string
+
+    @OneToMany(() => Cliente, (cliente) => cliente.usuario)
+    cliente: Cliente[];
 
 
 }

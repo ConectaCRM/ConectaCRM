@@ -1,11 +1,7 @@
-import {
-  IsNotEmpty,
-  IsBoolean,
-  IsDateString,
-  IsNumber,
-  IsString,
-} from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty, IsBoolean, IsDateString, IsNumber, IsString,} from 'class-validator';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Usuario } from '../../usuario/entities/usuario.entity';
+import { Categoria } from '../../categoria/entities/categoria.entity';
 
 @Entity({ name: 'tb_clientes' })
 export class Cliente {
@@ -30,4 +26,16 @@ export class Cliente {
   @IsBoolean()
   @Column({ type: 'boolean', default: true })
   ativo: boolean;
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.cliente, {
+  onDelete: 'CASCADE'
+  })
+  usuario: Usuario;
+
+  @ManyToOne(() => Categoria, (categoria) => categoria.cliente, {
+  onDelete: 'CASCADE'
+  })
+  categoria: Categoria;
+
+
 }
