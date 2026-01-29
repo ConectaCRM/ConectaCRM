@@ -16,11 +16,13 @@ export class Cliente {
   @ApiProperty()
   nome: string;
 
-  @IsDateString()
+  // @IsDateString()
+  @IsString()
   @IsNotEmpty()
-  @Column({ type: 'timestamp', nullable: false })
+  // @Column({ type: 'timestamp', nullable: false })
+  @Column({ length: 150, nullable: false })
   @ApiProperty()
-  dataCadastro: Date;
+  dataCadastro: string;
 
   @IsNumber()
   @IsNotEmpty()
