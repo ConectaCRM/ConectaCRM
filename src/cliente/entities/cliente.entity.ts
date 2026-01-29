@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsBoolean, IsDateString, IsNumber, IsString,} from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, UpdateDateColumn } from 'typeorm';
 import { Usuario } from '../../usuario/entities/usuario.entity';
 import { Categoria } from '../../categoria/entities/categoria.entity';
 import { ApiProperty } from '@nestjs/swagger';
@@ -17,10 +17,10 @@ export class Cliente {
   nome: string;
 
   // @IsDateString()
-  @IsString()
-  @IsNotEmpty()
   // @Column({ type: 'timestamp', nullable: false })
-  @Column({ length: 150, nullable: false })
+  // @IsNotEmpty()
+  // @Column({ length: 20, nullable: false })
+  @UpdateDateColumn()
   @ApiProperty()
   dataCadastro: string;
 
