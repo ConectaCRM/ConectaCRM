@@ -21,8 +21,9 @@ export class Cliente {
   // @IsNotEmpty()
   // @Column({ length: 20, nullable: false })
   @UpdateDateColumn()
+  @IsNotEmpty()
   @ApiProperty()
-  dataCadastro: string;
+  dataCadastro: Date;
 
   @IsNumber()
   @IsNotEmpty()
